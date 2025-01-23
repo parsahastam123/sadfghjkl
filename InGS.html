@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>بانک سوالات ریاضی هشتم</title>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        /* فونت و تنظیمات اولیه */
+        
+        body {
+            font-family: 'Vazirmatn', sans-serif;
+            margin: 0;
+            padding: 0;
+            direction: rtl;
+            box-sizing: border-box;
+            background: linear-gradient(to right, #ece9e6, #ffffff);
+            color: #333;
+        }
+        /* تب‌ها */
+        
+        .tabs {
+            display: flex;
+            justify-content: space-evenly;
+            background-color: #4CAF50;
+            border-bottom: 2px solid #388E3C;
+        }
+        
+        .tab-button {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            background: none;
+            color: white;
+            font-size: 18px;
+            cursor: pointer;
+            text-align: center;
+            transition: background 0.3s, transform 0.2s;
+            outline: none;
+        }
+        
+        .tab-button .icon {
+            margin-bottom: 5px;
+        }
+        
+        .tab-button img {
+            width: 24px;
+            height: 24px;
+        }
+        
+        .tab-button:hover,
+        .tab-button.active {
+            background-color: #388E3C;
+            transform: scale(1.05);
+        }
+        /* محتوای اصلی */
+        
+        main {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        /* دسته‌بندی‌ها */
+        
+        .categories {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            animation: slideIn 0.5s ease;
+        }
+        
+        .category {
+            background: #F9F9F9;
+            padding: 20px;
+            border: 1px solid #DDD;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            animation: zoomIn 0.5s ease;
+        }
+        
+        .category h3 {
+            margin: 0 0 15px 0;
+        }
+        
+        .upload-section {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            animation: fadeInUp 0.5s ease;
+        }
+        
+        .upload-section input {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #CCC;
+            border-radius: 5px;
+        }
+        
+        .upload-section button {
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .upload-section button:hover {
+            background-color: #388E3C;
+        }
+        
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 15px 0 0 0;
+        }
+        
+        .file-list li {
+            padding: 10px 15px;
+            background: #E0E0E0;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        /* انیمیشن‌ها */
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(-100%);
+            }
+            to {
+                transform: translateX(0);
+            }
+        }
+        
+        @keyframes zoomIn {
+            from {
+                transform: scale(0.8);
+            }
+            to {
+                transform: scale(1);
+            }
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* فوتر */
+        
+        footer {
+            background: #333;
+            color: #FFF;
+            text-align: center;
+            padding: 15px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- تب‌ها -->
+        <nav class="tabs">
+            <button class="tab-button active" data-tab="home">
+                <div class="icon">
+                    <img src="icons/home.svg" alt="خانه">
+                </div>
+                خانه
+            </button>
+            <button class="tab-button" data-tab="questions">
+                <div class="icon">
+                    <img src="icons/question.svg" alt="سوالات">
+                </div>
+                سوالات
+            </button>
+        </nav>
+
+        <!-- محتوای اصلی -->
+        <main>
+            <!-- خانه -->
+            <section id="home" class="tab-content active">
+                <h1>به بانک سوالات ریاضی خوش آمدید!</h1>
+                <p>این سایت برای مدیریت و اشتراک‌گذاری سوالات ریاضی طراحی شده است.</p>
+            </section>
+
+            <!-- سوالات -->
+            <section id="questions" class="tab-content">
+                <h1>سوالات</h1>
+                <!-- دسته‌بندی‌ها -->
+                <div class="categories">
+                    <h2>دسته‌بندی‌ها</h2>
+                    <div class="category">
+                        <h3>نمونه سوالات آزمون تیمز</h3>
+                        <div class="upload-section" id="timss">
+                            <form>
+                                <input type="file" accept=".pdf,.doc,.docx">
+                                <button type="button" onclick="uploadFile('timss')">آپلود</button>
+                            </form>
+                            <ul class="file-list"></ul>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <h3>محاسبات اعداد گویا</h3>
+                        <div class="upload-section" id="rationalNumbers">
+                            <form>
+                                <input type="file" accept=".pdf,.doc,.docx">
+                                <button type="button" onclick="uploadFile('rationalNumbers')">آپلود</button>
+                            </form>
+                            <ul class="file-list"></ul>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <h3>معادله و تجزیه عبارت‌های جبری</h3>
+                        <div class="upload-section" id="algebraicEquations">
+                            <form>
+                                <input type="file" accept=".pdf,.doc,.docx">
+                                <button type="button" onclick="uploadFile('algebraicEquations')">آپلود</button>
+                            </form>
+                            <ul class="file-list"></ul>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <h3>رابطه فیثاغورس</h3>
+                        <div class="upload-section" id="pythagoreanTheorem">
+                            <form>
+                                <input type="file" accept=".pdf,.doc,.docx">
+                                <button type="button" onclick="uploadFile('pythagoreanTheorem')">آپلود</button>
+                            </form>
+                            <ul class="file-list"></ul>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <h3>توان و جذر</h3>
+                        <div class="upload-section" id="powersAndRoots">
+                            <form>
+                                <input type="file" accept=".pdf,.doc,.docx">
+                                <button type="button" onclick="uploadFile('powersAndRoots')">آپلود</button>
+                            </form>
+                            <ul class="file-list"></ul>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <h3>زاویه‌های مرکزی و محاطی در دایره</h3>
+                        <div class="upload-section" id="circleAngles">
+                            <form>
+                                <input type="file" accept=".pdf,.doc,.docx">
+                                <button type="button" onclick="uploadFile('circleAngles')">آپلود</button>
+                            </form>
+                            <ul class="file-list"></ul>
+                        </div>
+                    </div>
+                    <div class="category">
+                        <h3>هم‌نهشتی مثلث‌ها</h3>
+                        <div class="upload-section" id="triangleCongruence">
+                            <form>
+                                <input type="file" accept=".pdf,.doc,.docx">
+                                <button type="button
